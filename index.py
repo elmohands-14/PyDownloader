@@ -20,6 +20,7 @@ class Mainapp(FROM_CLASS,QMainWindow ):
     def Handel_Ui(self):
         self.setFixedSize(589,286)
         self.setWindowTitle('PyDownloader')
+        self.setWindowIcon(QIcon('icon.png'))
 
 
     def Handel_Buttons(self):
@@ -27,7 +28,12 @@ class Mainapp(FROM_CLASS,QMainWindow ):
         self.pushButton.clicked.connect(self.Handel_Browse)
 
     def Handel_Browse(self):
-        save_place = QFileDialog.getSaveFileName(self,caption="Save As" ,directory=".",filter="All Files (*.*)")
+        file_name = self.lineEdit.text()
+        spil = file_name.split("/")
+        name = spil[-1].replace("%20"," ")
+
+        save_place = QFileDialog.getSaveFileName(self,caption="Save As" ,directory=f"./{name}",filter="All Files (*.*)")
+
         self.lineEdit_2.setText(save_place[0])
         # print(type(save_place[0]))
 
